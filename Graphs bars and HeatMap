@@ -1,0 +1,48 @@
+import matplotlib.pyplot as plt
+
+# Create a bar graph for total occurrences of each gender
+plt.figure(figsize=(10, 6))
+Vict_Sex.value_counts().plot(kind='bar', color=['blue', 'pink', 'gray'])
+plt.title('Total Count of Occurrences for Each Gender')
+plt.xlabel('Gender')
+plt.ylabel('Count')
+plt.show()
+
+# Loop through each gender-related CRM code and create a bar graph for each
+for i in range(len(sex_cds)):
+    current_crm_code = sex_cds[i]
+    indices = np.where(np.isin(cd_records, current_crm_code))[0]
+    reshaped_indices = indices.reshape(np.sum(sex_crm_occurrence[i]))
+
+    # Create a bar graph for the current gender-related CRM code
+    plt.figure(figsize=(8, 5))
+    (data['Vict Sex'])[reshaped_indices].value_counts().plot(kind='bar', color=['blue', 'pink', 'gray'])
+    plt.title(f'Count of Occurrences for Gender (CRM Code {current_crm_code})')
+    plt.xlabel('Gender')
+    plt.ylabel('Count')
+    plt.show()
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Assuming 'Date Rptd,' 'Crm Cd,' are columns in your dataset
+# Adjust features based on your dataset
+features = ['DayOfWeek', 'Month', 'Year']  # Add other relevant features
+
+# Convert 'Date Rptd' to datetime format with error handling
+data['Date Rptd'] = pd.to_datetime(data['Date Rptd'], errors='coerce')
+
+# Extract features from the date
+data['DayOfWeek'] = data['Date Rptd'].dt.dayofweek
+data['Month'] = data['Date Rptd'].dt.month
+data['Year'] = data['Date Rptd'].dt.year
+
+# Create a pivot table to aggregate crime counts based on day of the week and month
+heatmap_data = data.pivot_table(index='DayOfWeek', columns='Month', values='Crm Cd', aggfunc='count')
+
+# Create a heatmap using seaborn
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, cmap='Blues', annot=True, fmt='g', cbar_kws={'label': 'Crime Count'})
+plt.title('Heatmap of Crime Counts by Day of the Week and Month')
+plt.show()
