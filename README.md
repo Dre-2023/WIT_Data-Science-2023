@@ -31,7 +31,7 @@ Thank you for providing additional details on the key variables used in the code
 7. **Year:**
    - **Derived Feature:** Extracted from the 'Date Rptd' column, representing the year.
 
-These variables are used for feature engineering, model training, and evaluation in the provided machine learning code. If you have any specific questions or if there's anything else you'd like to know or modify in the code, please let me know!
+These variables are used for feature engineering, model training, and evaluation in the provided machine learning code. 
 IV. **Data Preparation**
    A. Data munging techniques for LA crime data
       1. Handling missing values
